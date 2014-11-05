@@ -10,11 +10,15 @@ class WsHandler(tornado.websocket.WebSocketHandler):
 	def on_message(self,msg):
 		data = json.loads(msg)
 		'''data = {
+			'type' : 'ping/execute',
 			'algo' : 'sha256/sha512',
 			'digest' : 'hexdigest/digest',
 			'message' : '<string>'
 		}
 		'''
+		if data['type'] == 'ping':
+			print 'ping from client'
+			return
 		algo = data['algo']
 		digest = data['digest']
 		message = data['message']
@@ -46,9 +50,10 @@ class WsHandler(tornado.websocket.WebSocketHandler):
 			'success' : True
 		})
 
-app = tornado.Application([
+app = tornado.web.Application([
 		(r'/',WsHandler),
 	])
 server = tornado.httpserver.HTTPServer(app)
 server.listen(os.environ.get('PORT',8000))
+print 'server listening on port 8000....'
 tornado.ioloop.IOLoop.instance().start()
