@@ -27,9 +27,9 @@ class WsHandler(tornado.websocket.WebSocketHandler):
 		self.write_message(result)
 
 	def generate(self,algo,hexdigest,message):
-		if algo == 'sha256':
+		if algo == 256:
 			algo = hashlib.sha256
-		elif algo == 'sha512':
+		elif algo == 512:
 			algo = hashlib.sha512
 		else:
 			return json.dumps({
