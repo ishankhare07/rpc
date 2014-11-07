@@ -9,10 +9,10 @@ class WsHandler(tornado.websocket.WebSocketHandler):
 		self.write_message('connected')
 	def on_message(self,msg):
 		data = json.loads(msg)
-		'''data = {
+		'''data = {di
 			'type' : 'ping/execute',
 			'algo' : 'sha256/sha512',
-			'digest' : 'hexdigest/digest',
+			'hexdigest' : 'True/False',
 			'message' : '<string>'
 		}
 		'''
@@ -20,13 +20,13 @@ class WsHandler(tornado.websocket.WebSocketHandler):
 			print 'ping from client'
 			return
 		algo = data['algo']
-		digest = data['digest']
+		hexdigest = data['hexdigest']
 		message = data['message']
 
-		result = self.generate(algo,digest,message)
+		result = self.generate(algo,hexdigest,message)
 		self.write_message(result)
 
-	def generate(self,algo,digest,message):
+	def generate(self,algo,hexdigest,message):
 		if algo == 'sha256':
 			algo = hashlib.sha256
 		elif algo == 'sha512':
@@ -39,7 +39,7 @@ class WsHandler(tornado.websocket.WebSocketHandler):
 			})
 
 		a = algo(message)
-		if digest == 'hexdig':
+		if hexdigest:
 			digest = a.hexdigest()
 		else:
 			digest = a.digest()
