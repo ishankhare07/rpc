@@ -9,7 +9,7 @@ class WsHandler(tornado.websocket.WebSocketHandler):
 		self.write_message('connected')
 	def on_message(self,msg):
 		data = json.loads(msg)
-		'''data = {di
+		'''data = {
 			'type' : 'ping/execute',
 			'algo' : 'sha256/sha512',
 			'hexdigest' : 'True/False',
