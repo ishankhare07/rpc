@@ -16,12 +16,16 @@ Step 2 :
 
 Step 3 :
 ==========
+>Rename the extracted folder to 'rpc'
+
+Step 4 :
+==========
 >Start the server by the command :-  
 >```shell  
 >python rpc/server.py
 >```
 
-Step 4 :
+Step 5 :
 ==========
 Run the client in a separate terminal as follows :-
 >```python  
