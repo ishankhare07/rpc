@@ -27,7 +27,8 @@ Run the client in a separate terminal as follows :-
 >```python  
 >import rpc  
 >c = rpc.client()  
->#generate an sha256 hash  
+>#generate a sha256 hash  
 >c.sha(256,'this is my string')  
->
+>#generate a sha512 hash  
+>c.sha(512,'this is another string')  
 >```
