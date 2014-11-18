@@ -4,10 +4,13 @@ import websocket,thread,time,json
 class client:
 	def __init__(self):
 		domain = raw_input('Enter server address(enter blank for default)')
+		print('connecting to server....')
 		if domain:
 			self.ws = websocket.create_connection(domain)
 		else:
 			self.ws = websocket.create_connection('ws://py2pyrpc.herokuapp.com/')
+		print('waking up server....')
+		time.sleep(3)
 		print(self.ws.recv())
 		thread.start_new_thread(self.pinger,(),)
 
